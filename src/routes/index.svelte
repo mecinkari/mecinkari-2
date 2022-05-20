@@ -14,7 +14,7 @@
 	<section class="min-h-screen grid md:grid-cols-2 items-center w-full bg-black">
 		<div class="py-12 px-12 md:text-right font-mono">
 			<p class="text-xl font-medium text-white">Hi there 👋</p>
-			<h1 class="text-6xl font-black text-white">I'm {title}</h1>
+			<h1 class="text-6xl font-black text-white">I'm <span class="title">{title}</span></h1>
 			<p class="text-xl mt-6 font-medium text-emerald-500">
 				Freelance Illustrator + Front-end Developer
 			</p>
@@ -28,6 +28,10 @@
 </PageTransition>
 
 <style>
+	.title {
+		text-shadow: 0 0 0.5rem rgb(16, 185, 129);
+	}
+
 	.image {
 		animation: flying 6000ms ease 0ms infinite forwards;
 	}
