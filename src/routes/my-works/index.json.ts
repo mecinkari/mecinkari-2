@@ -1,10 +1,17 @@
-export const get = async () => {
-    const res = await fetch("https://api.quran.com/api/v4/chapters?language=en")
-    const data = await res.json()
+import { client } from "../../lib/sanity/client";
 
-    if (res.status == 200) {
-        return {
-            body: data
-        }
+export const get = async () => {
+    const groq = `
+    *[_type == "gallery"]|order(_createdAt desc){
+        _id,
+        _createdAt,
+        title,
+        description,
+        mainImage,
     }
+    `
+    const res = await client.fetch(groq)
+
+    return { body: res }
 }
+

@@ -1,7 +1,24 @@
+<script lang="ts" context="module">
+	export const load = async ({ url }: any) => {
+		return {
+			props: { url }
+		};
+	};
+</script>
+
 <script lang="ts">
+	import { navigating } from '$app/stores';
+	import { loading } from '$lib/stores/loading';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 	import '$lib/styles/index.css';
 	import logoImg from '$lib/img/logo.png';
 	import { links } from '../lib/stores/stores';
+
+	$: $loading = !!$navigating;
+
+	console.log($loading);
+
+	export let url: string;
 
 	let isClicked: boolean = false;
 </script>
@@ -35,7 +52,7 @@
 				role="menuitem"
 				class="block p-3 font-black outline-none transition-colors duration-300 hover:bg-black hover:text-white focus:bg-black focus:text-white border-b-2 border-black"
 				on:click={() => {
-					isClicked = false;
+					isClicked = $navigating;
 				}}
 				href={link.href}>{link.text}</a
 			>
@@ -48,5 +65,17 @@
 		isClicked ? '-translate-x-96 opacity-25' : 'translate-x-0'
 	}`}
 >
-	<slot class={``} />
+	<PageTransition {url}><slot class={``} /></PageTransition>
 </main>
+
+<style>
+	.loading-true {
+		left: 0%;
+		transition: all 500ms ease-in-out;
+	}
+
+	.loading-false {
+		left: 100%;
+		transition: all 500ms ease-in-out;
+	}
+</style>

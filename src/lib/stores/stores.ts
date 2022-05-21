@@ -10,7 +10,7 @@ export const links: Link[] = [
 	},
 	{
 		href: '/about',
-		text: 'About'
+		text: 'About Me'
 	},
 	{
 		href: '/my-works',
