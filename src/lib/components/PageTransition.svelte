@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 </script>
 
-<div in:fade={{ duration: 250, delay: 300 }} out:fade={{ duration: 250 }}>
+<div in:fly={{ duration: 300, delay: 300, y: 120 }} out:fly={{ duration: 250, y: -120 }}>
 	<slot />
 </div>

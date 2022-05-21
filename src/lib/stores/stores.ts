@@ -11,5 +11,9 @@ export const links: Link[] = [
 	{
 		href: '/about',
 		text: 'About'
+	},
+	{
+		href: '/my-works',
+		text: 'My Works'
 	}
 ];

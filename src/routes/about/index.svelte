@@ -1,6 +1,5 @@
 <script lang="ts">
 	import PageTransition from '$lib/components/PageTransition.svelte';
-	import img from '$lib/img/11-5-2022-2123.png';
 </script>
 
 <svelte:head>
@@ -16,24 +15,25 @@
 		<div
 			class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-white text-xl font-mono font-medium mt-12"
 		>
-			<ul class="list-disc list-inside">
+			<ul class="list-disc list-outside anim-it" style:animation-delay={`500ms`}>
 				<i>Name</i>
-				<li>Tamcin</li>
-				<li>Mecinkari</li>
+				<li class="ml-5">Tamcin</li>
+				<li class="ml-5">Mecinkari</li>
 			</ul>
-			<ul class="list-disc list-inside">
+			<ul class="list-disc list-outside anim-it" style:animation-delay={`600ms`}>
 				<i>Birthday</i>
-				<li>18 December</li>
+				<li class="ml-5">18 December</li>
 			</ul>
-			<ul class="list-disc list-inside">
+			<ul class="list-disc list-outside anim-it" style:animation-delay={`700ms`}>
 				<i>Hobbies</i>
-				<li>Drawing</li>
-				<li>Coding</li>
-				<li>Watching YouTube</li>
+				<li class="ml-5">Drawing</li>
+				<li class="ml-5">Coding</li>
+				<li class="ml-5">Watching YouTube</li>
 			</ul>
-			<ul class="list-disc list-inside">
+			<ul class="list-disc list-outside anim-it" style:animation-delay={`800ms`}>
 				<i>Occupations</i>
-				<li>Freelance Illustrator</li>
+				<li class="ml-5">Student at Gunadarma University</li>
+				<li class="ml-5">Freelance Illustrator</li>
 			</ul>
 		</div>
 	</main>
@@ -41,6 +41,27 @@
 
 <style>
 	i {
-		@apply text-emerald-400 not-italic;
+		@apply text-emerald-400 font-black not-italic;
+	}
+
+	.anim-it {
+		animation: slide-in;
+		animation-duration: 1000ms;
+		animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+		animation-direction: normal;
+		animation-fill-mode: forwards;
+		opacity: 0;
+		transform: translateY(3rem);
+	}
+
+	@keyframes slide-in {
+		0% {
+			opacity: 0;
+			transform: translateY(3rem);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0rem);
+		}
 	}
 </style>

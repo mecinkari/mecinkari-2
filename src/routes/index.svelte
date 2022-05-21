@@ -1,83 +1,42 @@
 <script lang="ts">
 	import PageTransition from '$lib/components/PageTransition.svelte';
+	import { onMount } from 'svelte';
 	import logoImg from '../lib/img/logo.png';
 
 	const title: string = 'Mecinkari';
+
+	onMount((): void => {
+		let parallaxObj = document.getElementsByClassName(
+			'parallax'
+		) as HTMLCollectionOf<HTMLElement> | null;
+
+		document.addEventListener('mousemove', (e: MouseEvent) => {
+			if (parallaxObj != null) {
+				for (let i = 0; i < parallaxObj.length; i++) {
+					let el = parallaxObj[i];
+					let move_val: string = el.getAttribute('data-value')!;
+					let val: number = parseInt(move_val);
+					let x: number = (window.innerWidth - e.pageX * val) / 100;
+					let y: number = (window.innerHeight - e.pageY * val) / 100;
+					el.style.transform = `translate(${x}px, ${y}px)`;
+				}
+			}
+		});
+	});
 </script>
 
 <svelte:head>
-	<link rel="icon" href={logoImg} />
 	<title>{title}</title>
 </svelte:head>
 
 <PageTransition>
-	<section class="min-h-screen grid md:grid-cols-2 items-center w-full bg-black">
-		<div class="py-12 px-12 md:text-right font-mono">
-			<p class="text-xl font-medium text-white">Hi there 👋</p>
-			<h1 class="text-6xl font-black text-white">I'm <span class="title">{title}</span></h1>
-			<p class="text-xl mt-6 font-medium text-emerald-500">
-				Freelance Illustrator + Front-end Developer
-			</p>
+	<section class="min-h-screen flex justify-center items-center w-full bg-black">
+		<img src={logoImg} alt="img" class="absolute mix-blend-screen opacity-[0.25]" data-value={1} />
+		<div class="py-12 px-12 font-mono z-30" data-value={-1}>
+			<h1 class="text-6xl mt-4 font-black text-white">
+				I'm <span class="bg-emerald-400 text-black md:px-3">{title}</span>
+			</h1>
+			<p class="text-xl mt-6 font-medium text-white">Freelance Illustrator + Front-end Developer</p>
 		</div>
-
-		<div
-			class="hidden md:block w-72 lg:w-96 h-72 lg:h-96 image"
-			style={`background-image: url(${logoImg}); background-size: cover`}
-		/>
 	</section>
 </PageTransition>
-
-<style>
-	.title {
-		text-shadow: 0 0 0.5rem rgb(16, 185, 129);
-	}
-
-	.image {
-		animation: flying 6000ms ease 0ms infinite forwards;
-	}
-
-	@keyframes flying {
-		0% {
-			opacity: 1;
-		}
-		9% {
-			opacity: 1;
-		}
-		10% {
-			opacity: 0.2;
-		}
-		11% {
-			opacity: 1;
-		}
-		24% {
-			opacity: 1;
-		}
-		25% {
-			opacity: 0.2;
-		}
-		26% {
-			opacity: 1;
-		}
-		49% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0.2;
-		}
-		51% {
-			opacity: 1;
-		}
-		74% {
-			opacity: 1;
-		}
-		75% {
-			opacity: 0.2;
-		}
-		76% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-</style>
