@@ -36,14 +36,14 @@
 
 <main class="bg-black min-h-screen flex flex-col justify-center px-12 py-16">
 	<h1
-		class="text-2xl md:text-6xl font-mono font-black text-white anim-it"
+		class="text-3xl md:text-6xl font-mono font-black text-white anim-it"
 		style:animation-delay={`250ms`}
 	>
 		About <span class="text-emerald-400">me.</span>
 	</h1>
 
 	<div
-		class="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-white text-xl font-mono font-medium mt-12"
+		class="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-white md:text-xl font-mono font-medium mt-12"
 	>
 		<ul class="list-disc list-outside anim-it" style:animation-delay={`500ms`}>
 			<i>Name</i>

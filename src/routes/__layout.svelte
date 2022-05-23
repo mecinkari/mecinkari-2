@@ -7,6 +7,11 @@
 </script>
 
 <script lang="ts">
+	interface Url {
+		href: string;
+		pathname: string;
+	}
+
 	import { navigating } from '$app/stores';
 	import { loading } from '$lib/stores/loading';
 	import PageTransition from '$lib/components/PageTransition.svelte';
@@ -14,13 +19,12 @@
 	import logoImg from '$lib/img/logo.png';
 	import { links } from '../lib/stores/stores';
 
+	export let url: Url;
+
+	console.log(url.pathname);
+
 	$: $loading = !!$navigating;
-
-	console.log($loading);
-
-	export let url: string;
-
-	let isClicked: boolean = false;
+	$: isClicked = false;
 </script>
 
 <svelte:head>
@@ -28,8 +32,6 @@
 </svelte:head>
 
 <button
-	aria-haspopup="true"
-	aria-expanded="false"
 	type="button"
 	class={`w-14 h-14 fixed z-30 focus:outline outline-2 outline-emerald-400 top-0 right-0 bg-black transition-all duration-500 cursor-pointer flex flex-col items-center justify-center gap-y-2`}
 	on:click={() => {
@@ -52,7 +54,7 @@
 				role="menuitem"
 				class="block p-3 font-black outline-none transition-colors duration-300 hover:bg-black hover:text-white focus:bg-black focus:text-white border-b-2 border-black"
 				on:click={() => {
-					isClicked = $navigating;
+					isClicked = $loading;
 				}}
 				href={link.href}>{link.text}</a
 			>
@@ -65,7 +67,7 @@
 		isClicked ? '-translate-x-96 opacity-25' : 'translate-x-0'
 	}`}
 >
-	<PageTransition {url}><slot class={``} /></PageTransition>
+	<PageTransition url={url.href}><slot class={``} /></PageTransition>
 </main>
 
 <style>

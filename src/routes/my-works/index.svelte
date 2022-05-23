@@ -13,25 +13,26 @@
 	import { urlFor } from '$lib/sanity/client';
 	import type { Gallery } from '$lib/types/typings';
 	export let data: Gallery[];
-
-	console.log(data);
 </script>
 
 <svelte:head>
 	<title>Mecinkari - My works</title>
 </svelte:head>
 
-<main class="bg-black min-h-screen flex flex-col justify-center items-center px-12 py-16">
-	<h1 class="text-6xl font-mono font-black text-white anim-it" style:animation-delay={`250ms`}>
+<main class="bg-black min-h-screen flex flex-col justify-center px-12 py-16">
+	<h1
+		class="text-3xl md:text-6xl font-mono font-black text-white anim-it"
+		style:animation-delay={`250ms`}
+	>
 		My <span class="text-emerald-400">works.</span>
 	</h1>
 
 	<section class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 w-full">
 		{#each data as d, i}
-			<div class="aspect-square anim-it" style:animation-delay={`${i * 100 + 350}ms`}>
+			<div class="aspect-square anim-it" style:animation-delay={`${i * 100 + 200}ms`}>
 				<img
 					src={urlFor(d.mainImage).url()}
-					class="w-full h-full object-cover"
+					class="w-full h-full object-cover rounded-xl"
 					style="object-position: top center;"
 					alt={`${d._id} ${i + 1}`}
 				/>
@@ -50,6 +51,7 @@
 		opacity: 0;
 		transform: translateY(3rem);
 	}
+
 	@keyframes slide-in {
 		0% {
 			opacity: 0;

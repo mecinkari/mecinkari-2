@@ -2,6 +2,8 @@
 	import { fly } from 'svelte/transition';
 	export let url: string;
 	const duration: number = 500;
+
+	// console.log(url);
 </script>
 
 {#key url}

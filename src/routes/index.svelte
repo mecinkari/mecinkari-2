@@ -17,10 +17,12 @@
 		style:animation-delay={`250ms`}
 	/>
 	<div class="py-12 px-12 font-mono z-30 anim-it" data-value={-1} style:animation-delay={`500ms`}>
-		<h1 class="text-6xl mt-4 font-black text-white">
+		<h1 class="text-3xl md:text-6xl mt-4 font-black text-white">
 			I'm <span class="bg-emerald-400 text-black md:px-3">{title}</span>
 		</h1>
-		<p class="text-xl mt-6 font-medium text-white">Freelance Illustrator + Front-end Developer</p>
+		<p class="text-normal md:text-xl mt-6 font-medium text-white">
+			Freelance Illustrator + Front-end Developer
+		</p>
 	</div>
 </section>
 
