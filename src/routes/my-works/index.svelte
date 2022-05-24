@@ -27,7 +27,7 @@
 		My <span class="text-emerald-400">works.</span>
 	</h1>
 
-	<section class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 w-full">
+	<section class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 w-full">
 		{#each data as d, i}
 			<div class="aspect-square anim-it" style:animation-delay={`${i * 100 + 200}ms`}>
 				<img

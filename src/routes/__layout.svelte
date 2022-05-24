@@ -20,16 +20,20 @@
 	import { links } from '../lib/stores/stores';
 
 	export let url: Url;
+	let isClicked: boolean = false;
 
-	console.log(url.pathname);
-
-	$: $loading = !!$navigating;
-	$: isClicked = false;
+	$: loading.setNavigate(!!$navigating);
 </script>
 
 <svelte:head>
 	<link rel="icon" href={logoImg} />
 </svelte:head>
+
+<!-- <p class="text-white font-bold fixed top-0 left-0 z-50">{$loading.status}</p> -->
+
+<!-- {#if $loading.status === 'LOADING'}
+	<p class="text-white font-bold fixed top-0 left-0 z-50">{$loading.status}</p>
+{/if} -->
 
 <button
 	type="button"
@@ -54,7 +58,7 @@
 				role="menuitem"
 				class="block p-3 font-black outline-none transition-colors duration-300 hover:bg-black hover:text-white focus:bg-black focus:text-white border-b-2 border-black"
 				on:click={() => {
-					isClicked = $loading;
+					isClicked = false;
 				}}
 				href={link.href}>{link.text}</a
 			>
@@ -65,7 +69,7 @@
 <main
 	class={`min-h-screen transition-all duration-500 w-full bg-black ${
 		isClicked ? '-translate-x-96 opacity-25' : 'translate-x-0'
-	}`}
+	} ${$loading.status === 'NAVIGATING' ? 'opacity-0' : ''}`}
 >
 	<PageTransition url={url.href}><slot class={``} /></PageTransition>
 </main>
